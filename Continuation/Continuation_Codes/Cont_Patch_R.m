@@ -41,7 +41,7 @@
 %
 % All data is stored in a folder named as "D[m]_Ring_[Dir]" 
 %
-function branch = Cont_Patch_Ring(x,p,Dir)
+function branch = Cont_Patch(x,p,Dir)
 
 close all, clc;
 
