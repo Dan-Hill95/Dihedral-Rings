@@ -39,7 +39,7 @@ Here are your next steps:
 *>> ExploreBifurcationDiagram('FolderName/branch.mat',idVar);*
  
    where FolderName is the data folder that is created by Cont_Patch, and idVar is the column of the
-   branch measures to be plotted. For example, for a data folder called 'D2_Patch_pl', you would type:
+   branch measures to be plotted. For example, for a data folder called 'D2_Ring_pl', you would type:
  
 *>> ExploreBifurcationDiagram('D2_Ring_pl/branch.mat',5);*
  
