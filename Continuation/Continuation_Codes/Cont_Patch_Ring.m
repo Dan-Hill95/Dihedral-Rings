@@ -39,9 +39,9 @@
 %% Outputs
 %           branch- [Step, -1, mu, EucNorm(u), L2Norm(u[0]), max(|u[0]|), ..., max(|u[N]|)]
 %
-% All data is stored in a folder named as "D[m]_Patch_[Dir]" 
+% All data is stored in a folder named as "D[m]_Ring_[Dir]" 
 %
-function branch = Cont_Patch_Ring(x,p,Dir,SolnClass)
+function branch = Cont_Patch_Ring(x,p,Dir)
 
 close all, clc;
 
@@ -62,9 +62,7 @@ end
 SetupDiffMats_Patch;
 
 %% Initial data
-if isempty(SolnClass)
-a = MatchSoln_Ring(x,m,L,p(1));  % Solving the algebraic matching condition.
-SolnName='Up_Ring';
+a = MatchSoln(x,m,L,p(1));  % Solving the algebraic matching condition.
 % The elements of a are the coefficients of our localised radial amplitudes,
 % and a top-down profile of the solution is plotted.
 
@@ -85,11 +83,6 @@ u0 = zeros(k*N,1);
 % Defining u0 as in the plot in MatchSoln for initial guess
 for i=0:k-1
     u0(1+(i)*N:(i+1)*N)= 0.5*a(i+1)*r.*besselj(m*(i)+1,r).*Q;
-end
-else
-    [uu,SolnName]=InitialGuess_SH(p,SolnClass,mesh_params);
-    u0 = zeros(n*N,1);
-    u0(1:N)= uu;
 end
 
 myproblemHandle = @(u) Equation_Patch(u,p,mesh_params);
@@ -194,11 +187,7 @@ stepperPars.fsolveOptions = optimset('Display','off',...
                                      'Jacobian','on',...
                                      'MaxIter',20);
 stepperPars.optNonlinIter = 10;
-if p(5) == 1
-stepperPars.dataFolder    = [SolnName,'_Stab',num2str(m),'_' Dir];    
-else
 stepperPars.dataFolder    = ['D',num2str(m),'_Ring_' Dir];
-end
 stepperPars.PlotSolution  = plotSol;
 stepperPars.BranchVariables = solMeas;
 % stepperPars.PlotBranchVariableId = [];%2;
