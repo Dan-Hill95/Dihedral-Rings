@@ -2,7 +2,7 @@
 %N is the truncation order/dimension index
 %m is the lattice index
 %a is an (N+1) vector; we will solve for this close to some initial guess
-function [F,J]=match_Ring(a,m)
+function [F,J]=match(a,m)
 %Defining N and F
 N=length(a)-1;
 F=a;
