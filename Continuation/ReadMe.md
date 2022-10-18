@@ -9,20 +9,20 @@ Rather than accessing any of the available folders, you should initialise this c
 
 **After running Init.m, the following guide should appear in your command window:**
 
-These codes are for the continuation of localised dihedral patterns in the 2-3 Swift-Hohenberg equation.
+These codes are for the continuation of localised dihedral rings in the 2-3 Swift-Hohenberg equation.
 Here are your next steps:
 
 1. If you want to solve the (n+1)-dimensional algebraic matching condition for localised dihedral
-   patterns, type:
+   rings, type:
  
 *>> a = MatchSoln(x, m, r_max, mu);*
  
    where x=[x[0],x[1],...,x[n]] is your initial guess, m is the dihedral lattice,
    r_max is the radial boundary and mu gives an approximate localisation. For example:
  
-*>> a = MatchSoln((1/10) * ones(1,11), 6, 100, 1e-4);*
+*>> a = MatchSoln((1/3) * ones(1,3), 6, 100, 0.14);*
  
-2. If you want to find and continue localised dihedral patterns in the 2-3 SH equation, type:
+2. If you want to find and continue localised dihedral rings in the 2-3 SH equation, type:
  
 *>> branch = Cont_Patch(x, p, Dir);*
  
@@ -32,7 +32,7 @@ Here are your next steps:
    routine, which must be 'pl' (plus), 'mn' (minus), 'sp' (small plus), or 'sm' (small minus).
    For example:
  
-*>> branch = Cont_Patch([-1,2], [0.02, 1.6, -1, 2, 5], 'pl');*
+*>> branch = Cont_Patch(-[0.266,0.261,0.053,0.365,-0.186], [0.24, 1.6, -1, 3, 10], 'pl');*
  
 3. If you want to plot the bifurcation curve of a localised solution, type:
  
@@ -41,5 +41,5 @@ Here are your next steps:
    where FolderName is the data folder that is created by Cont_Patch, and idVar is the column of the
    branch measures to be plotted. For example, for a data folder called 'D2_Patch_pl', you would type:
  
-*>> ExploreBifurcationDiagram('D2_Patch_pl/branch.mat',5);*
+*>> ExploreBifurcationDiagram('D2_Ring_pl/branch.mat',5);*
  
