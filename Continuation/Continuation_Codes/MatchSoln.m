@@ -12,7 +12,7 @@
 
 %For 3|k but 2~|k, a good initial guess will be of the form x=y*[-1, 1, 1, -1,1,1,...,-1,1,1], for some
 %small y
-function a_out=MatchSoln_Ring(x,k,r_max,mu)
+function a_out=MatchSoln(x,k,r_max,mu)
 %Introduce parameters
 N=length(x)-1;
 a0=x.*ones(1,N+1);
@@ -25,7 +25,7 @@ t=0:0.01:2*pi;
 options = optimset('Display','iter','Jacobian','off','TolFun',1e-9);
 
 %Solving the (N+1) D_{k} matching condition
-[a_out,fval,exitflag]=fsolve(@(a) match_Ring(a,k),a0,options);
+[a_out,fval,exitflag]=fsolve(@(a) match(a,k),a0,options);
 if exitflag > 0
 % [~,J]=match_Ring(a_out,k);
 % DJ = speye(N+1)-J;
